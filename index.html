@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沁益 | 家庭指导师</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #165DFF;
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #cce0ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            background-color: white;
+            border-radius: 10px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #165DFF;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .profile-photo {
+            display: block;
+            width: 200px;
+            height: 250px;
+            border-radius: 10px;
+            margin: 0 auto 2rem;
+            object-fit: cover;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #165DFF;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e7ff;
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            color: #165DFF;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-left: 1rem;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background-color: #165DFF;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">沁益 · 家庭指导师</div>
+            <div class="nav-links">
+                <a href="#about">关于我</a>
+                <a href="#philosophy">核心理念</a>
+                <a href="#services">我的服务</a>
+                <a href="#contact">联系我</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>沁益老师</h1>
+            <p>从家庭故事中走来，用专业与温度，陪伴每一个家庭走向和谐与成长。</p>
+        </section>
+
+        <section id="about" class="card">
+            <h2>关于我</h2>
+            <img src="zhaopian.jpg" alt="沁益老师" class="profile-photo">
+            <p>大家好，我是沁益。37岁那年，我迎来了生命中最珍贵的礼物——一双可爱的孩子。也正是在那段时间，我和爱人经历了关系的考验，在寻求心理咨询帮助的过程中，我被这份职业深深吸引。</p>
+            <p>如今，我是一名中科院认证的心理咨询师，师从天津市十佳心理督导师，专注于心理交互沙盘游戏。我相信，每一段家庭故事，都是疗愈与成长的契机。</p>
+            <h3>我的专业领域</h3>
+            <ul>
+                <li>亲子关系与家庭教育</li>
+                <li>青少年心理健康辅导</li>
+                <li>家庭系统排列</li>
+                <li>婚姻情感咨询</li>
+                <li>心理交互沙盘游戏</li>
+            </ul>
+        </section>
+
+        <section id="philosophy" class="card">
+            <h2>我的核心理念</h2>
+            <p style="font-size: 1.3rem; font-style: italic; color: #165DFF;">好的关系胜过一切教育。</p>
+            <p>我始终相信，家庭是一个系统，而不是个体的简单相加。当家庭成员之间的关系变得健康、流动和充满爱时，教育便会自然发生，问题也会迎刃而解。我的工作，就是帮助家庭看见关系，重建连接。</p>
+        </section>
+
+        <section id="services" class="card">
+            <h2>我的服务</h2>
+            <ul>
+                <li><strong>一对一深度咨询</strong>：针对个人或家庭核心议题，提供安全、保密的专业陪伴。</li>
+                <li><strong>家庭工作坊</strong>：通过团体互动与体验式活动，促进家庭成员间的理解与合作。</li>
+                <li><strong>亲子教育指导</strong>：运用沙盘游戏等专业技术，帮助父母读懂孩子，建立高质量的亲子互动。</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="card">
+            <h2>联系我</h2>
+            <p>如果你正面临家庭困惑，或希望为家庭注入新的活力，欢迎与我联系。</p>
+            <p>邮箱：qinyi@example.com</p>
+            <p>微信：qinyi_psychology</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 沁益 · 家庭指导师 | 用专业与爱，守护每一个家庭</p>
+    </footer>
+</body>
+</html>
