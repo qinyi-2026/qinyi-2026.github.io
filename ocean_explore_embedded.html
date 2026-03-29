@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深蓝耀湾区·小学生海边探险</title>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ocean-blue: #4A90E2;
+            --ocean-dark: #357ABD;
+            --sand-yellow: #F5C542;
+            --sand-light: #F9D971;
+            --white: #FFFFFF;
+            --gray-light: #F5F7FA;
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --success: #27AE60;
+            --coral: #FF6B6B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body       
+{
+            font-family: 'ZCOOL KuaiLe', 'Nunito', sans-serif;
+            background: linear-gradient(180deg, #E8F4FC 0%, #FFF9E6 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* 顶部Banner */
+        .banner {
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-dark) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 10px 40px rgba(74, 144, 226, 0.3);
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23F5C542' fill-opacity='0.3' d='M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,53,1392,42.7L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner-title {
+            font-size: 3em;
+            color: var(--white);
+            text-shadow: 3px 3px 0 var(--ocean-dark), 5px 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .banner-subtitle {
+            font-size: 1.3em;
+            color: var(--sand-yellow);
+            margin-bottom: 30px;
+        }
+
+        .marine-animals {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-size: 3.5em;
+            margin-top: 20px;
+        }
+
+        .marine-animals span {
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        .marine-animals span:nth-child(2) { animation-delay: 0.3s; }
+        .marine-animals span:nth-child(3) { animation-delay: 0.6s; }
+        .marine-animals span:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 章节标题 */
+        .section {
+            margin: 50px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sand-yellow) 0%, var(--sand-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(245, 197, 66, 0.4);
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: var(--ocean-blue);
+            text-shadow: 2px 2px 0 rgba(74, 144, 226, 0.1);
+        }
+
+        /* 路线卡片 */
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .route-card {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border: 4px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .route-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--ocean-blue);
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+        }
+
+        .route-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--ocean-blue), var(--sand-yellow));
+        }
+
+        .route-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .route-icon {
+            font-size: 3em;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #E8F4FC 0%, #D4EAF7 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .route-info h3 {
+            font-size: 1.4em;
+            color: var(--ocean-blue);
+            margin-bottom: 5px;
+        }
+
+        .difficulty {
+            color: var(--sand-yellow);
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+
+        .route-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1em;
+            color: var(--text-light);
+        }
+
+        .detail-item i {
+            color: var(--ocean-blue);
+            width: 20px;
+        }
+
+        .knowledge-points {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFF5D6 100%);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--sand-yellow);
+        }
+
+        .knowledge-points h4 {
+            color: var(--sand-yellow);
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .knowledge-points p {
+            color: var(--text-dark);
+            font-size: 0.95em;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        }
+
+        /* 装备清单 */
+        .equipment-section {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .equipment-counter {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-dark) 100%);
+            border-radius: 20px;
+            color: var(--white);
+        }
+
+        .counter-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--sand-yellow);
+        }
+
+        .counter-text {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .equipment-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 15px;
+            background: var(--gray-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .equipment-item:hover {
+            background: #E8F4FC;
+            transform: translateY(-3px);
+        }
+
+        .equipment-item.checked {
+            background: linear-gradient(135deg, #E8F8F5 0%, #D5F4E6 100%);
+            border-color: var(--success);
+        }
+
+        .equipment-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .check-circle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 25px;
+            height: 25px;
+            border: 3px solid var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .equipment-item.checked .check-circle {
+            background: var(--success);
+            border-color: var(--success);
+            color: var(--white);
+        }
+
+        .equipment-icon {
+            font-size: 2.5em;
+        }
+
+        .equipment-name {
+            font-size: 1em;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* 自然课堂 */
+        .nature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .nature-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nature-card:hover {
+            transform: rotate(2deg) scale(1.02);
+        }
+
+        .nature-image {
+            height: 180px;
+            background: linear-gradient(135deg, #E8F4FC 0%, #D4EAF7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            position: relative;
+        }
+
+        .nature-tag {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--coral);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+        }
+
+        .nature-content {
+            padding: 25px;
+        }
+
+        .nature-content h3 {
+            font-size: 1.4em;
+            color: var(--ocean-blue);
+            margin-bottom: 10px;
+        }
+
+        .nature-content p {
+            color: var(--text-light);
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        /* 亲子任务卡 */
+        .mission-section {
+            background: linear-gradient(135deg, #FFF0F3 0%, #FFE8ED 100%);
+            border-radius: 30px;
+            padding: 35px;
+            border: 3px dashed var(--coral);
+        }
+
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mission-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .mission-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        }
+
+        .mission-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8E8E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .mission-content {
+            flex: 1;
+        }
+
+        .mission-content h4 {
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .mission-content p {
+            color: var(--text-light);
+            font-size: 0.95em;
+        }
+
+        .btn-upload {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--coral) 0%, #FF8E8E 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-upload:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        /* 分享广场 */
+        .gallery-section {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: var(--gray-light);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .gallery-image {
+            height: 150px;
+            background: linear-gradient(135deg, #E8F4FC 0%, #FFE8ED 50%, #FFF9E6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+        }
+
+        .gallery-info {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .gallery-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: var(--text-dark);
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--sand-yellow) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .gallery-likes {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--coral);
+            font-size: 0.95em;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-dark) 100%);
+            border-radius: 50px 50px 0 0;
+            margin-top: 50px;
+            color: var(--white);
+        }
+
+        footer p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        footer .highlight {
+            color: var(--sand-yellow);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .banner-title { font-size: 2em; }
+            .marine-animals { font-size: 2.5em; gap: 15px; }
+            .section-title { font-size: 1.5em; }
+            .routes-grid { grid-template-columns: 1fr; }
+            .route-details { grid-template-columns: 1fr; }
+            .equipment-grid { grid-template-columns: repeat(2, 1fr); }
+            .mission-item { flex-direction: column; text-align: center; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* 活动影像板块 */
+        .media-section {
+            background: linear-gradient(135deg, #E8F4FC 0%, #FFF0F3 50%, #FFF9E6 100%);
+            border-radius: 30px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 3px dashed var(--ocean-blue);
+        }
+
+        .media-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .media-tab {
+            padding: 12px 30px;
+            background: var(--white);
+            border: 3px solid var(--ocean-blue);
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 1.1em;
+            color: var(--ocean-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .media-tab:hover,
+        .media-tab.active {
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--ocean-dark) 100%);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+
+        /* 视频卡片 */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--coral) 100%);
+            opacity: 0.9;
+        }
+
+        .video-thumbnail i {
+            font-size: 4em;
+            color: var(--white);
+            z-index: 1;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .video-card:hover .video-thumbnail i {
+            transform: scale(1.2);
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-date {
+            font-size: 0.9em;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 照片墙 */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-item {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .photo-image {
+            height: 180px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-image::after {
+            content: '🔍';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.4em;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .photo-item:hover .photo-image::after {
+            opacity: 1;
+        }
+
+        .photo-info {
+            padding: 15px;
+        }
+
+        .photo-title {
+            font-size: 1em;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .photo-date {
+            font-size: 0.85em;
+            color: var(--text-light);
+        }
+
+        /* 照片放大弹窗 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            animation: lightboxZoom 0.3s ease;
+        }
+
+        @keyframes lightboxZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-image {
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8em;
+        }
+
+        .lightbox-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .lightbox-title {
+            font-size: 1.3em;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .lightbox-date {
+            font-size: 1em;
+            color: var(--text-light);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        /* 视频播放器弹窗 */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            animation: videoZoom 0.3s ease;
+        }
+
+        @keyframes videoZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: linear-gradient(135deg, var(--ocean-blue) 0%, var(--coral) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--white);
+        }
+
+        .video-placeholder i {
+            font-size: 5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .video-placeholder p {
+            font-size: 1.2em;
+        }
+
+        .video-modal-info {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .video-modal-close:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .media-content {
+            display: none;
+        }
+
+        .media-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .media-tabs {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .media-tab {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            .photos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .photo-image {
+                height: 150px;
+            }
+            .lightbox-image {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部Banner -->
+    <header class="banner">
+        <div class="banner-content">
+            <h1 class="banner-title">🌊 深蓝耀湾区 🌊</h1>
+            <p class="banner-subtitle">小学生海边探险科普之旅</p>
+            <div class="marine-animals">
+                <span>🐋</span>
+                <span>🐙</span>
+                <span>🦀</span>
+                <span>🐠</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 推荐路线 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🗺️</div>
+                <h2 class="section-title">推荐徒步路线</h2>
+                <div class="section-icon">🗺️</div>
+            </div>
+            <div class="routes-grid">
+                <!-- 路线1 -->
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">🏔️</div>
+                        <div class="route-info">
+                            <h3>大鹏半岛·海柴角</h3>
+                            <div class="difficulty">★★☆ 中等难度</div>
+                        </div>
+                    </div>
+                    <div class="route-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>约 3 小时</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-child"></i>
+                            <span>适合 6-10 岁</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-points">
+                        <h4><i class="fas fa-lightbulb"></i> 科普知识点</h4>
+                        <p>探索神奇的潮间带生物，观察独特的火山岩地貌，了解海洋生态系统的奥秘！</p>
+                    </div>
+                    <button class="btn-primary" onclick="showRouteDetail('大鹏半岛')">
+                        <i class="fas fa-search"></i> 查看详情
+                    </button>
+                </div>
+
+                <!-- 路线2 -->
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">🌊</div>
+                        <div class="route-info">
+                            <h3>盐田海滨栈道</h3>
+                            <div class="difficulty">★☆☆ 简单</div>
+                        </div>
+                    </div>
+                    <div class="route-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>约 2 小时</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-child"></i>
+                            <span>适合 5-9 岁</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-points">
+                        <h4><i class="fas fa-lightbulb"></i> 科普知识点</h4>
+                        <p>认识红树林生态系统，了解港口历史文化，观察候鸟迁徙的驿站！</p>
+                    </div>
+                    <button class="btn-primary" onclick="showRouteDetail('盐田海滨栈道')">
+                        <i class="fas fa-search"></i> 查看详情
+                    </button>
+                </div>
+
+                <!-- 路线3 -->
+                <div class="route-card">
+                    <div class="route-header">
+                        <div class="route-icon">🏕️</div>
+                        <div class="route-info">
+                            <h3>麦理浩径第二段</h3>
+                            <div class="difficulty">★★☆ 中等难度</div>
+                        </div>
+                    </div>
+                    <div class="route-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span>约 4 小时</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-child"></i>
+                            <span>适合 8-12 岁</span>
+                        </div>
+                    </div>
+                    <div class="knowledge-points">
+                        <h4><i class="fas fa-lightbulb"></i> 科普知识点</h4>
+                        <p>探索古火山岩遗迹，夜晚学习天文观测知识，体验露营的乐趣！</p>
+                    </div>
+                    <button class="btn-primary" onclick="showRouteDetail('麦理浩径')">
+                        <i class="fas fa-search"></i> 查看详情
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 装备清单 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎒</div>
+                <h2 class="section-title">我的装备清单</h2>
+                <div class="section-icon">🎒</div>
+            </div>
+            <div class="equipment-section">
+                <div class="equipment-counter">
+                    <div class="counter-number" id="checkedCount">0</div>
+                    <div class="counter-text">/ 9 件装备已准备</div>
+                </div>
+                <div class="equipment-grid" id="equipmentGrid">
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">💧</span>
+                        <span class="equipment-name">水壶</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🧢</span>
+                        <span class="equipment-name">防晒帽</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🧴</span>
+                        <span class="equipment-name">防晒霜</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🦟</span>
+                        <span class="equipment-name">驱蚊水</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🏥</span>
+                        <span class="equipment-name">急救包</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">👟</span>
+                        <span class="equipment-name">运动鞋</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">👕</span>
+                        <span class="equipment-name">备用衣物</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🗑️</span>
+                        <span class="equipment-name">垃圾袋</span>
+                    </label>
+                    <label class="equipment-item" onclick="toggleEquipment(this)">
+                        <input type="checkbox">
+                        <div class="check-circle"><i class="fas fa-check"></i></div>
+                        <span class="equipment-icon">🔭</span>
+                        <span class="equipment-name">望远镜</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- 自然课堂 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📚</div>
+                <h2 class="section-title">自然课堂</h2>
+                <div class="section-icon">📚</div>
+            </div>
+            <div class="nature-grid">
+                <div class="nature-card">
+                    <div class="nature-image">
+                        🦀
+                        <span class="nature-tag">潮间带生物</span>
+                    </div>
+                    <div class="nature-content">
+                        <h3>招潮蟹</h3>
+                        <p>挥舞大钳子的沙滩小画家！招潮蟹有一只超大的红色钳子，它会不停地挥舞，像是在打招呼。退潮时，它们在沙滩上挖洞安家，还会把沙子捏成小球，排出洞口，在沙滩上"作画"呢！</p>
+                    </div>
+                </div>
+                <div class="nature-card">
+                    <div class="nature-image">
+                        🐟
+                        <span class="nature-tag">神奇鱼类</span>
+                    </div>
+                    <div class="nature-content">
+                        <h3>弹涂鱼</h3>
+                        <p>会爬树的鱼！弹涂鱼不仅能在水里游泳，还能用强壮的胸鳍在泥滩上"走路"，甚至能跳上树干！它们用皮肤和口腔呼吸空气，是鱼类中的"两栖明星"！</p>
+                    </div>
+                </div>
+                <div class="nature-card">
+                    <div class="nature-image">
+                        🕊️
+                        <span class="nature-tag">湿地鸟类</span>
+                    </div>
+                    <div class="nature-content">
+                        <h3>白鹭</h3>
+                        <p>海边的小白裙舞者！白鹭全身雪白，腿长脖子长，站在浅水中觅食的样子优雅极了，就像穿着白色芭蕾舞裙跳舞。每年冬天，它们会从北方飞来深圳香港过冬哦！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 亲子任务卡 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎯</div>
+                <h2 class="section-title">亲子任务卡</h2>
+                <div class="section-icon">🎯</div>
+            </div>
+            <div class="mission-section">
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <div class="mission-number">①</div>
+                        <div class="mission-content">
+                            <h4>贝壳收藏家</h4>
+                            <p>找到一种你喜欢的贝壳，观察它的形状、颜色和纹理，然后拍照记录</p>
+                        </div>
+                        <button class="btn-upload" onclick="uploadPhoto('贝壳任务')">
+                            <i class="fas fa-camera"></i> 上传图片
+                        </button>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-number">②</div>
+                        <div class="mission-content">
+                            <h4>招潮蟹观察员</h4>
+                            <p>在潮间带找到一只招潮蟹，静静观察它挥舞大钳子和吐沙球的样子</p>
+                        </div>
+                        <button class="btn-upload" onclick="uploadPhoto('招潮蟹任务')">
+                            <i class="fas fa-camera"></i> 上传图片
+                        </button>
+                    </div>
+                    <div class="mission-item">
+                        <div class="mission-number">③</div>
+                        <div class="mission-content">
+                            <h4>环保小卫士</h4>
+                            <p>在海边捡到至少一个垃圾并带走，保护我们的海洋家园</p>
+                        </div>
+                        <button class="btn-upload" onclick="uploadPhoto('环保任务')">
+                            <i class="fas fa-camera"></i> 上传图片
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分享广场 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">📷</div>
+                <h2 class="section-title">分享广场</h2>
+                <div class="section-icon">📷</div>
+            </div>
+            <div class="gallery-section">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-image">🏖️</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👧</div>
+                                <span>小明</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>128</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🐚</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👦</div>
+                                <span>小红</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>96</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🦀</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👧</div>
+                                <span>小华</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>156</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🌅</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👦</div>
+                                <span>小军</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>203</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">🎒</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👧</div>
+                                <span>小丽</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>87</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-image">⭐</div>
+                        <div class="gallery-info">
+                            <div class="gallery-user">
+                                <div class="user-avatar">👦</div>
+                                <span>小伟</span>
+                            </div>
+                            <div class="gallery-likes">
+                                <i class="fas fa-heart"></i>
+                                <span>142</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 活动影像板块 -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎬</div>
+                <h2 class="section-title">我们的探险时光</h2>
+                <div class="section-icon">🎬</div>
+            </div>
+            <div class="media-section">
+                <!-- 切换标签 -->
+                <div class="media-tabs">
+                    <button class="media-tab active" onclick="switchMediaTab('videos', this)">
+                        <i class="fas fa-video"></i> 精彩视频
+                    </button>
+                    <button class="media-tab" onclick="switchMediaTab('photos', this)">
+                        <i class="fas fa-images"></i> 珍贵照片
+                    </button>
+                </div>
+
+                <!-- 视频内容 -->
+                <div class="media-content active" id="videos-content">
+                    <div class="videos-grid">
+                        <!-- 视频1 -->
+                        <div class="video-card" onclick="openVideo('videos/camping2.mp4', '大鹏半岛探险之旅', '2025-07-15')">
+                            <div class="video-thumbnail">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">
+                                    <i class="fas fa-film" style="color: var(--ocean-blue);"></i>
+                                    大鹏半岛探险之旅
+                                </div>
+                                <div class="video-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    2025年7月15日
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 视频2 -->
+                        <div class="video-card" onclick="openVideo('videos/camping3.mp4', '盐田栈道亲子徒步', '2025-08-03')">
+                            <div class="video-thumbnail">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">
+                                    <i class="fas fa-film" style="color: var(--ocean-blue);"></i>
+                                    盐田栈道亲子徒步
+                                </div>
+                                <div class="video-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    2025年8月3日
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 视频3 -->
+                        <div class="video-card" onclick="openVideo('videos/camping1.mp4', '麦理浩径露营记', '2025-09-20')">
+                            <div class="video-thumbnail">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="video-info">
+                                <div class="video-title">
+                                    <i class="fas fa-film" style="color: var(--ocean-blue);"></i>
+                                    麦理浩径露营记
+                                </div>
+                                <div class="video-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    2025年9月20日
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 照片内容 -->
+                <div class="media-content" id="photos-content">
+                    <div class="photos-grid">
+                        <!-- 照片1 -->
+                        <div class="photo-item" onclick="openPhoto('🌊', '海边日出', '2025-07-15')">
+                            <div class="photo-image">🌊</div>
+                            <div class="photo-info">
+                                <div class="photo-title">🌊 海边日出</div>
+                                <div class="photo-date">2025-07-15</div>
+                            </div>
+                        </div>
+
+                        <!-- 照片2 -->
+                        <div class="photo-item" onclick="openPhoto('🏕️', '沙滩露营', '2025-07-15')">
+                            <div class="photo-image">🏕️</div>
+                            <div class="photo-info">
+                                <div class="photo-title">🏕️ 沙滩露营</div>
+                                <div class="photo-date">2025-07-15</div>
+                            </div>
+                        </div>
+
+                        <!-- 照片3 -->
+                        <div class="photo-item" onclick="openPhoto('🦀', '发现招潮蟹', '2025-08-03')">
+                            <div class="photo-image">🦀</div>
+                            <div class="photo-info">
+                                <div class="photo-title">🦀 发现招潮蟹</div>
+                                <div class="photo-date">2025-08-03</div>
+                            </div>
+                        </div>
+
+                        <!-- 照片4 -->
+                        <div class="photo-item" onclick="openPhoto('🐚', '贝壳收藏', '2025-08-03')">
+                            <div class="photo-image">🐚</div>
+                            <div class="photo-info">
+                                <div class="photo-title">🐚 贝壳收藏</div>
+                                <div class="photo-date">2025-08-03</div>
+                            </div>
+                        </div>
+
+                        <!-- 照片5 -->
+                        <div class="photo-item" onclick="openPhoto('👨‍👩‍👧', '全家福', '2025-09-20')">
+                            <div class="photo-image">👨‍👩‍👧</div>
+                            <div class="photo-info">
+                                <div class="photo-title">👨‍👩‍👧 全家福</div>
+                                <div class="photo-date">2025-09-20</div>
+                            </div>
+                        </div>
+
+                        <!-- 照片6 -->
+                        <div class="photo-item" onclick="openPhoto('🌅', '日落美景', '2025-09-20')">
+                            <div class="photo-image">🌅</div>
+                            <div class="photo-info">
+                                <div class="photo-title">🌅 日落美景</div>
+                                <div class="photo-date">2025-09-20</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>🌊 <span class="highlight">深蓝耀湾区</span> · 探索海洋奥秘 🌊</p>
+        <p>小小探险家，大大海洋梦</p>
+        <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+            <i class="fas fa-heart" style="color: var(--coral);"></i> 
+            专为6-12岁小学生设计的海边科普探险指南 
+            <i class="fas fa-heart" style="color: var(--coral);"></i>
+        </p>
+    </footer>
+
+    <!-- 照片放大弹窗 -->
+    <div class="lightbox" id="lightbox" onclick="closePhoto(event)">
+        <button class="lightbox-close" onclick="closePhoto(event)">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <div class="lightbox-image" id="lightboxImage">📷</div>
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle">照片标题</div>
+                <div class="lightbox-date" id="lightboxDate">2025-01-01</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 视频播放器弹窗 -->
+    <div class="video-modal" id="videoModal" onclick="closeVideo(event)">
+        <button class="video-modal-close" onclick="closeVideo(event)">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="video-container" onclick="event.stopPropagation()">
+            <div class="video-wrapper" style="padding-bottom: 0; height: 450px; background: #000;">
+                <video id="modalVideo" controls style="width: 100%; height: 100%; border-radius: 25px 25px 0 0;">
+                    <source id="modalVideoSource" src="" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+            </div>
+            <div class="video-modal-info">
+                <div>
+                    <div class="lightbox-title" id="videoModalTitle">视频标题</div>
+                    <div class="lightbox-date" id="videoModalDate">2025-01-01</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 路线详情弹窗
+        function showRouteDetail(routeName) {
+            const details = {
+                '大鹏半岛': '🏔️ 大鹏半岛·海柴角\n\n📍 路线特色：\n• 深圳最美的海岸线之一\n• 可观察到独特的火山岩地貌\n• 丰富的潮间带生物\n\n📚 科普重点：\n• 认识火山岩的形成\n• 观察寄居蟹、小海螺\n• 学习潮汐知识\n\n⚠️ 注意事项：\n• 需要攀爬岩石，注意安全\n• 建议穿着防滑运动鞋\n• 带足饮用水',
+                '盐田海滨栈道': '🌊 盐田海滨栈道\n\n📍 路线特色：\n• 世界最长的海滨栈道\n• 全长19.5公里\n• 平坦好走，风景优美\n\n📚 科普重点：\n• 红树林生态系统\n• 盐田港的历史变迁\n• 候鸟栖息地保护\n\n⚠️ 注意事项：\n• 部分路段无遮挡，注意防晒\n• 可选择分段行走\n• 沿途有休息区和洗手间',
+                '麦理浩径': '🏕️ 麦理浩径第二段\n\n📍 路线特色：\n• 全球最美步道之一\n• 山海相连的壮丽景色\n• 可露营过夜\n\n📚 科普重点：\n• 古火山地质遗迹\n• 星空识别与天文知识\n• 野外露营技能\n\n⚠️ 注意事项：\n• 需要办理港澳通行证\n• 建议有经验的领队\n• 准备好露营装备'
+            };
+            alert(details[routeName] || '暂无详情');
+        }
+
+        // 装备清单功能
+        function toggleEquipment(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            element.classList.toggle('checked', checkbox.checked);
+            updateCounter();
+        }
+
+        function updateCounter() {
+            const checkedItems = document.querySelectorAll('.equipment-item.checked').length;
+            const counterElement = document.getElementById('checkedCount');
+            counterElement.textContent = checkedItems;
+            
+            // 添加动画效果
+            counterElement.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // 上传图片功能
+        function uploadPhoto(taskName) {
+            alert(`📸 ${taskName}\n\n演示模式：图片上传功能\n\n在实际应用中，这里会打开相机或相册选择图片上传。继续加油完成你的探险任务吧！🌊`);
+        }
+
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.route-card, .nature-card, .mission-item');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // 活动影像 - 切换标签页
+        function switchMediaTab(type, button) {
+            // 更新按钮状态
+            document.querySelectorAll('.media-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            // 更新内容显示
+            document.querySelectorAll('.media-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(type + '-content').classList.add('active');
+        }
+
+        // 打开照片放大弹窗
+        function openPhoto(emoji, title, date) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxDate = document.getElementById('lightboxDate');
+
+            lightboxImage.textContent = emoji;
+            lightboxTitle.textContent = title;
+            lightboxDate.textContent = date;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭照片弹窗
+        function closePhoto(event) {
+            if (event.target.classList.contains('lightbox') || event.target.closest('.lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // 打开视频播放器
+        function openVideo(videoSrc, title, date) {
+            const videoModal = document.getElementById('videoModal');
+            const videoModalTitle = document.getElementById('videoModalTitle');
+            const videoModalDate = document.getElementById('videoModalDate');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalVideoSource = document.getElementById('modalVideoSource');
+
+            // 设置视频源
+            modalVideoSource.src = videoSrc;
+            modalVideo.load();
+
+            // 设置标题和日期
+            videoModalTitle.textContent = title;
+            videoModalDate.textContent = date;
+
+            // 显示弹窗
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // 自动播放视频
+            modalVideo.play().catch(error => {
+                console.log('视频自动播放被阻止:', error);
+            });
+        }
+
+        // 关闭视频弹窗
+        function closeVideo(event) {
+            if (event.target.classList.contains('video-modal') || event.target.closest('.video-modal-close')) {
+                const modalVideo = document.getElementById('modalVideo');
+                const videoModal = document.getElementById('videoModal');
+
+                // 暂停视频播放
+                modalVideo.pause();
+
+                // 隐藏弹窗
+                videoModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // 键盘ESC关闭弹窗
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modalVideo = document.getElementById('modalVideo');
+                const videoModal = document.getElementById('videoModal');
+
+                // 如果视频弹窗是打开的，暂停视频
+                if (videoModal.classList.contains('active')) {
+                    modalVideo.pause();
+                }
+
+                document.getElementById('lightbox').classList.remove('active');
+                videoModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+    </script>
+</body>
+</html>

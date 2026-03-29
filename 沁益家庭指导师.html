@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沁益工作坊 | 中科院认证心理咨询师</title>
+    <style>
+        :root {
+            --primary: #165DFF;
+            --primary-dark: #1e3a8a;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 16px 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(22, 93, 255, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 移动端菜单按钮 */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero区域 */
+        .hero {
+            padding: 160px 24px 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 板块通用样式 */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 48px;
+            text-align: center;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 4px 24px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(22, 93, 255, 0.12);
+        }
+
+        /* 关于我板块 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .about-photo-fixed {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #ddd6fe 100%);
+            border-radius: 24px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(22, 93, 255, 0.15);
+        }
+
+        .about-photo-fixed img {
+            width: 280px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .about-photo-fixed img:hover {
+            transform: scale(1.02);
+        }
+
+        .teacher-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-top: 16px;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 24px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 24px;
+            line-height: 1.9;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .credential-item {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .expertise-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .expertise-list li {
+            padding: 12px 0;
+            padding-left: 32px;
+            position: relative;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+
+        .expertise-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* 痛点板块 */
+        .pain-points {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 24px;
+            padding: 48px;
+            margin-top: 32px;
+        }
+
+        .pain-points-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .pain-points ul {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pain-points li {
+            padding: 16px 0 16px 40px;
+            position: relative;
+            font-size: 1.1rem;
+            color: var(--text);
+            border-bottom: 1px dashed rgba(22, 93, 255, 0.2);
+        }
+
+        .pain-points li:last-child {
+            border-bottom: none;
+        }
+
+        .pain-points li::before {
+            content: '•';
+            position: absolute;
+            left: 16px;
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .pain-points-ending {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        /* 核心理念板块 */
+        .philosophy-section {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 24px;
+            padding: 64px 48px;
+            text-align: center;
+        }
+
+        .philosophy-quote {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            margin-bottom: 32px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .philosophy-quote::before,
+        .philosophy-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+            line-height: 1;
+        }
+
+        .philosophy-quote::before {
+            top: -20px;
+            left: -30px;
+        }
+
+        .philosophy-quote::after {
+            bottom: -40px;
+            right: -30px;
+        }
+
+        .philosophy-content {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 2;
+        }
+
+        /* 服务流程 */
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            text-align: center;
+            box-shadow: 0 4px 24px var(--shadow);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 24px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .step-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 我的服务 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 32px;
+            box-shadow: 0 4px 24px var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .service-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* 反馈板块 */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 4px 24px var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--text);
+            line-height: 1.9;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* 亲子实践活动案例板块 */
+        .activities-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 24px;
+            padding: 48px;
+        }
+
+        .activities-description {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 32px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .activities-iframe-container {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            background: var(--white);
+        }
+
+        .activities-iframe-container iframe {
+            width: 100%;
+            height: 650px;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .activities-section {
+                padding: 32px 20px;
+            }
+            .activities-iframe-container iframe {
+                height: 500px;
+            }
+        }
+
+        /* 来访者初筛问卷板块 */
+        .questionnaire-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 64px 48px;
+            box-shadow: 0 4px 24px var(--shadow);
+        }
+
+        .questionnaire-form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-label .required {
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--text);
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(22, 93, 255, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .checkbox-item:hover {
+            background: #eff6ff;
+            border-color: var(--primary);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: var(--text);
+            flex: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(22, 93, 255, 0.3);
+            margin-top: 16px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 93, 255, 0.4);
+        }
+
+        .privacy-hint {
+            text-align: center;
+            margin-top: 20px;
+            padding: 16px;
+            background: rgba(22, 93, 255, 0.05);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .privacy-hint .icon {
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .questionnaire-section {
+                padding: 48px 24px;
+            }
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 联系我板块 */
+        .contact-section {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 24px;
+            padding: 64px 48px;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(22, 93, 255, 0.1);
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(22, 93, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(22, 93, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .privacy-note {
+            text-align: center;
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(22, 93, 255, 0.05);
+            border-radius: 12px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* 悬浮按钮 */
+        .floating-btn {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 4px 20px rgba(22, 93, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(22, 93, 255, 0.5);
+        }
+
+        /* 音乐控制按钮 */
+        .music-control {
+            position: fixed;
+            bottom: 100px;
+            right: 32px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(22, 144, 255, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            border: 3px solid var(--white);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(22, 144, 255, 0.5);
+        }
+
+        .music-control.playing {
+            animation: musicPulse 2s infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(22, 144, 255, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(22, 144, 255, 0.7), 0 0 20px rgba(22, 93, 255, 0.5); }
+        }
+
+        .music-control span {
+            font-size: 1.5rem;
+        }
+
+        .music-hint {
+            position: fixed;
+            bottom: 170px;
+            right: 32px;
+            background: var(--white);
+            padding: 12px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            font-size: 0.9rem;
+            color: var(--text);
+            z-index: 998;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .music-hint.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .music-hint::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 25px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .music-control {
+                width: 48px;
+                height: 48px;
+                bottom: 90px;
+                right: 20px;
+            }
+            .music-control span {
+                font-size: 1.2rem;
+            }
+            .music-hint {
+                right: 20px;
+                bottom: 150px;
+                font-size: 0.8rem;
+                max-width: 160px;
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #0f172a 100%);
+            color: var(--white);
+            padding: 48px 24px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-line1 {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 12px;
+        }
+
+        .footer-line2 {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 140px 20px 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-photo {
+                height: 300px;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pain-points {
+                padding: 32px 24px;
+            }
+
+            .philosophy-section {
+                padding: 48px 24px;
+            }
+
+            .philosophy-quote {
+                font-size: 1.5rem;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: 48px 24px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .floating-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 14px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">沁益工作坊</div>
+            <ul class="nav-links">
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#philosophy">核心理念</a></li>
+                <li><a href="#services">我的服务</a></li>
+                <li><a href="#activities">亲子实践</a></li>
+                <li><a href="#contact">联系我</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">中科院认证心理咨询师 | 家庭系统治疗师</div>
+            <h1>沁益工作坊</h1>
+            <p class="hero-subtitle">从37岁成为母亲的那一刻起，我选择用专业与爱陪伴更多家庭，走向和谐与成长。</p>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-grid">
+                <div>
+                    <div class="about-photo-fixed">
+                        <img src="zhaopian1.jpg" alt="沁益老师">
+                        <div class="teacher-name">沁益老师</div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <p>大家好，我是沁益。37岁那年，我迎来了一双儿女，也在那时经历了婚姻中的至暗时刻。正是那次走进心理咨询室，让我第一次真正看见了自己，也看见了关系的真相。如今，我是一名中科院认证的心理咨询师，师从天津市十佳心理督导师，专注于心理交互沙盘游戏。</p>
+                    <p>我曾历任大型国企财务部管理人员，目前仍在国企金融行业在职工作。因为对孩子的教育感到困惑，我走进了心理咨询领域，并最终成为一名家庭指导师。</p>
+                    
+                    <div class="credentials-grid">
+                        <div class="credential-item">中科院心理研究所 · 认证心理咨询师</div>
+                        <div class="credential-item">天津市十佳心理督导师 · 亲授学员</div>
+                        <div class="credential-item">心理交互沙盘游戏 · 高级指导师</div>
+                        <div class="credential-item">家庭系统排列 · 专业受训</div>
+                    </div>
+
+                    <h3 style="color: var(--primary-dark); margin: 32px 0 16px; font-size: 1.2rem;">专业领域</h3>
+                    <ul class="expertise-list">
+                        <li>亲子关系与家庭教育</li>
+                        <li>青少年心理健康辅导</li>
+                        <li>家庭系统排列</li>
+                        <li>婚姻情感咨询</li>
+                        <li>心理交互沙盘游戏</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 痛点共鸣 -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <h2 class="section-title">如果你正在经历……</h2>
+            <div class="pain-points">
+                <ul>
+                    <li>孩子不愿跟你沟通，你不知道如何靠近</li>
+                    <li>夫妻之间越来越像室友，亲密感在流失</li>
+                    <li>你在育儿中感到孤独、焦虑，甚至自我怀疑</li>
+                    <li>你希望修复与家人的关系，却不知从何开始</li>
+                    <li>原生家庭的模式总在重复，你想打破它</li>
+                </ul>
+                <div class="pain-points-ending">—— 这些，都可以在这里被看见、被疗愈。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心理念 -->
+    <section class="section" id="philosophy">
+        <div class="container">
+            <h2 class="section-title">我的核心理念</h2>
+            <div class="philosophy-section">
+                <div class="philosophy-quote">好的关系胜过一切教育。</div>
+                <p class="philosophy-content">我始终相信，家庭是一个系统，而不是个体的简单相加。当家庭成员之间的关系变得健康、流动和充满爱时，教育便会自然发生，问题也会迎刃而解。我的工作，就是帮助家庭看见关系，重建连接。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务流程 -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <h2 class="section-title">如何开始？</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">免费预约</div>
+                    <div class="step-desc">15分钟电话沟通，了解你的基本情况</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">正式咨询</div>
+                    <div class="step-desc">线上/线下可选，每次50-60分钟</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">持续陪伴</div>
+                    <div class="step-desc">根据情况制定家庭成长计划</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我的服务 -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">我的服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✓</div>
+                    <div class="service-title">一对一深度咨询</div>
+                    <div class="service-desc">针对个人或家庭核心议题，提供安全、保密的专业陪伴。</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✓</div>
+                    <div class="service-title">家庭工作坊</div>
+                    <div class="service-desc">通过团体互动与体验式活动，促进家庭成员间的理解与合作。</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✓</div>
+                    <div class="service-title">亲子教育指导</div>
+                    <div class="service-desc">运用沙盘游戏等专业技术，帮助父母读懂孩子，建立高质量的亲子互动。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 来访者反馈 -->
+    <section class="section" style="background: var(--white);">
+        <div class="container">
+            <h2 class="section-title">来访者说</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">在沁益老师的陪伴下，我和孩子的关系从对抗变成了对话。她让我看见，原来不是孩子有问题，而是我一直用错了方式。</p>
+                    <div class="testimonial-author">—— 一位12岁男孩的妈妈</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">第一次咨询后，我哭了很久，但不是难过，是终于被理解了。沁益老师真的很温暖。</p>
+                    <div class="testimonial-author">—— 正在修复亲密关系的来访者</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我的亲子实践活动案例 -->
+    <section class="section" id="activities" style="background: var(--white);">
+        <div class="container">
+            <h2 class="section-title">我的亲子实践活动案例</h2>
+            <div class="activities-section">
+                <p class="activities-description">
+                    这是我为孩子们设计的海边科普探险活动，通过户外探索增进亲子关系，学习自然知识。
+                </p>
+                <div class="activities-iframe-container">
+                    <iframe src="ocean_explore_embedded.html" title="深蓝耀湾区海边探险"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 来访者初筛问卷 -->
+    <section class="section" id="questionnaire">
+        <div class="container">
+            <h2 class="section-title">来访者初筛问卷</h2>
+            <div class="questionnaire-section">
+                <form class="questionnaire-form" onsubmit="submitQuestionnaire(event)">
+                    <div class="form-group">
+                        <label class="form-label">您的称呼<span class="required">*</span></label>
+                        <input type="text" class="form-input" placeholder="请输入您的称呼" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">孩子年龄<span class="required">*</span></label>
+                        <select class="form-select" required>
+                            <option value="">请选择孩子年龄</option>
+                            <option value="3-6">3-6岁</option>
+                            <option value="7-12">7-12岁</option>
+                            <option value="13-18">13-18岁</option>
+                            <option value="18+">18岁以上</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">主要困扰（可多选）<span class="required">*</span></label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="concern1" name="concern" value="亲子沟通">
+                                <label for="concern1">亲子沟通</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="concern2" name="concern" value="情绪问题">
+                                <label for="concern2">情绪问题</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="concern3" name="concern" value="学业压力">
+                                <label for="concern3">学业压力</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="concern4" name="concern" value="家庭关系">
+                                <label for="concern4">家庭关系</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="concern5" name="concern" value="其他">
+                                <label for="concern5">其他</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">期望目标</label>
+                        <textarea class="form-textarea" placeholder="请描述您希望通过咨询达到的目标..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">联系方式（电话或微信）<span class="required">*</span></label>
+                        <input type="text" class="form-input" placeholder="请输入您的电话或微信号" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">提交问卷</button>
+
+                    <div class="privacy-hint">
+                        <span class="icon">🔒</span>您的信息将严格保密，仅用于咨询预约沟通
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我 -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-section">
+                <div class="contact-content">
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <div class="contact-label">邮箱</div>
+                            <div class="contact-value">47109612@qq.com</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💬</div>
+                        <div>
+                            <div class="contact-label">微信</div>
+                            <div class="contact-value">qinyi_psychology</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <div class="contact-label">咨询方式</div>
+                            <div class="contact-value">线上视频咨询（腾讯会议）| 天津线下工作室（需预约）</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💰</div>
+                        <div>
+                            <div class="contact-label">咨询费用</div>
+                            <div class="contact-value">单次咨询 500元/50分钟 | 家庭系统咨询套餐 3次/1350元</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🎁</div>
+                        <div>
+                            <div class="contact-label">特别说明</div>
+                            <div class="contact-value">初次沟通15分钟免费，不包含在咨询时长内</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-buttons">
+                    <a href="mailto:47109612@qq.com" class="btn btn-primary">
+                        ✉️ 发送邮件
+                    </a>
+                    <button class="btn btn-secondary" onclick="alert('请添加微信：qinyi_psychology 进行预约')">
+                        📅 预约咨询
+                    </button>
+                </div>
+                
+                <div class="privacy-note">
+                    🔒 所有咨询内容严格保密，遵循心理咨询伦理守则。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 悬浮按钮 -->
+    <button class="floating-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+        📞 预约免费沟通
+    </button>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-line1">© 2025 沁益工作坊 | 用专业与爱，守护每一个家庭</div>
+            <div class="footer-line2">让每一段家庭故事，都成为疗愈与成长的契机。</div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // 来访者初筛问卷提交
+        function submitQuestionnaire(event) {
+            event.preventDefault();
+            alert('您的信息已加密提交，沁益老师会尽快联系您（演示模式）');
+        }
+    </script>
+
+    <!-- 背景音乐 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="sunnybay.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- 音乐控制按钮 -->
+    <div class="music-control" id="musicControl" onclick="toggleMusic()">
+        <span id="musicIcon">🎵</span>
+    </div>
+    <div class="music-hint" id="musicHint">点击播放背景音乐</div>
+
+    <script>
+        // 背景音乐控制
+        let isMusicPlaying = false;
+        let musicInitialized = false;
+        const music = document.getElementById('bgMusic');
+        const musicControl = document.getElementById('musicControl');
+        const musicIcon = document.getElementById('musicIcon');
+        const musicHint = document.getElementById('musicHint');
+
+        // 设置音量为30%
+        music.volume = 0.3;
+
+        // 页面加载时尝试自动播放
+        document.addEventListener('DOMContentLoaded', function() {
+            attemptAutoplay();
+            
+            // 显示提示
+            setTimeout(() => {
+                musicHint.classList.add('show');
+            }, 1000);
+            
+            // 3秒后隐藏提示
+            setTimeout(() => {
+                musicHint.classList.remove('show');
+            }, 4000);
+        });
+
+        // 监听页面点击，用于处理浏览器阻止自动播放的情况
+        document.addEventListener('click', function userInteractionHandler() {
+            if (!musicInitialized) {
+                attemptAutoplay();
+                musicInitialized = true;
+            }
+            document.removeEventListener('click', userInteractionHandler);
+        }, { once: true });
+
+        function attemptAutoplay() {
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isMusicPlaying = true;
+                    updateMusicUI();
+                }).catch(() => {
+                    isMusicPlaying = false;
+                    updateMusicUI();
+                });
+            }
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                music.pause();
+                isMusicPlaying = false;
+                musicHint.textContent = '音乐已暂停';
+            } else {
+                music.play().then(() => {
+                    isMusicPlaying = true;
+                    musicHint.textContent = '音乐播放中';
+                }).catch(() => {
+                    musicHint.textContent = '无法播放音乐';
+                });
+            }
+            
+            updateMusicUI();
+            
+            // 显示提示
+            musicHint.classList.add('show');
+            setTimeout(() => {
+                musicHint.classList.remove('show');
+            }, 2000);
+        }
+
+        function updateMusicUI() {
+            if (isMusicPlaying) {
+                musicControl.classList.add('playing');
+                musicIcon.textContent = '🔊';
+            } else {
+                musicControl.classList.remove('playing');
+                musicIcon.textContent = '🎵';
+            }
+        }
+    </script>
+</body>
+</html>
